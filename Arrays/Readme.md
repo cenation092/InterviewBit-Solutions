@@ -1,1 +1,1 @@
-This folder contains all solution of Arrays category.
+This folder contains all solutions of Arrays category.

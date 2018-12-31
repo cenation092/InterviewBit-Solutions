@@ -1,0 +1,60 @@
+/**
+ * Definition for an interval.
+ * struct Interval {
+ *     int start;
+ *     int end;
+ *     Interval() : start(0), end(0) {}
+ *     Interval(int s, int e) : start(s), end(e) {}
+ * };
+ */
+ 
+void fill( vector<Interval> &a, vector<Interval> &b ){
+    for( auto it : a ){
+        b.push_back(it);
+    }
+}
+
+vector<Interval> Solution::insert(vector<Interval> &in, Interval Nin) {
+    if( Nin.start > Nin.end )swap(Nin.start, Nin.end);
+    vector<Interval> v;
+    int n = in.size()-1;
+    if( n == -1 ){
+        v.push_back(Nin);
+        return v;
+    }
+    if( Nin.end < in[0].start ){
+        v.push_back(Nin);
+        fill(in,v);
+        return v;
+    }
+    if( Nin.start > in[n].end ){
+        fill(in,v);
+        v.push_back(Nin);
+        return v;
+    }
+    int i = 0; 
+    while( i <= n && in[i].end < Nin.start ){
+        v.push_back(in[i]);
+        i++;
+    }
+    if( in[i].start > Nin.end ){
+        v.push_back(Nin);
+        for( ; i <= n; i++ )v.push_back(in[i]);
+        return v;
+    }
+    Nin.start = min( in[i].start, Nin.start );
+    while( i <= n && in[i].end < Nin.end )i++;
+    if( in[i].start > Nin.end ){
+        
+    }
+    else{
+        Nin.end = max( in[i].end, Nin.end );
+        i++;
+    }
+    v.push_back(Nin);
+    while( i <= n ){
+        v.push_back(in[i]);
+        i++;
+    }
+    return v;
+}

@@ -1,12 +1,13 @@
- ListNode* merge(ListNode *A, ListNode *B){
+ListNode* merge(ListNode *A, ListNode *B){
     if( A == NULL )return B;
     if( B == NULL )return A;
-    int who =  0;
-    ListNode *root = A;
-    ListNode *iterator = A;
+    int who =  1;
+    ListNode *root = NULL;
+    ListNode *iterator = NULL;
     while( A != NULL && B != NULL ){
         if( who&1 ){
-            iterator->next = A;
+            if( root == NULL )root = A;
+            else iterator->next = A;
             iterator = A;
             A = A->next;
         }
@@ -21,7 +22,7 @@
     if( B != NULL )iterator->next = B;
     return root;
 }
-
+ 
 ListNode *reverseNode( ListNode *head ){
     if( head == NULL || head->next == NULL )return head;
     ListNode *iterator = head, *prev = head;
@@ -36,7 +37,7 @@ ListNode *reverseNode( ListNode *head ){
     }
     return iterator;
 }
-
+ 
 ListNode* Solution::reorderList(ListNode* A) {
     ListNode *slow = A, *fast = A;
     while( slow->next != NULL && fast->next != NULL && fast->next->next != NULL ){

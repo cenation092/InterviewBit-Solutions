@@ -1,0 +1,10 @@
+testcase:
+  methodname: flatten 
+  input:
+  - name: A 
+    type: TREENODE
+  return:
+    name: retval 
+    type: TREENODE 
+  print:
+  - retval

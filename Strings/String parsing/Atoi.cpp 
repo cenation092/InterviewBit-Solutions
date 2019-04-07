@@ -1,0 +1,25 @@
+int Solution::atoi(const string s) {
+    int i = 0;
+    if( i == s.size() )return 0;
+    long long num = 0;
+    int neg = 1;
+    if( s[i] == '-' ){
+        neg = -1;
+        i++;
+    }
+    else if( s[i] == '+' ){
+        i++;
+    }
+    while( i < s.size() && s[i] != ' ' ){
+        if( s[i] > '9' || s[i] < '0' ) break;
+        num = num * 10 + (s[i] - '0');
+        i++;
+        if( num > INT_MAX ){
+            if( neg == -1 )num = INT_MIN;
+            else num = INT_MAX;
+            return num;
+        }
+    }
+    num *= neg;
+    return num;
+}   

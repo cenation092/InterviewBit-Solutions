@@ -1,0 +1,50 @@
+vector<string> Solution::fullJustify(vector<string> &A, int B) {
+    vector<string> ar;
+    for( int i = 0; i < A.size(); ){
+        vector<int> idx;
+        idx.push_back(i);
+        string temp = A[i++];
+        while( i < A.size() && (temp+' '+A[i]).size() <= B ){
+            temp += ' ';
+            temp += A[i];
+            idx.push_back(i++);
+        }
+        int len = 0;
+        int n = idx.size();
+        for( auto it : idx )len += A[it].size();
+        int space = B-len;
+        string gap = "";
+        int exGap = 0;
+        for( int i = 1; i <= B; i++ ){
+            if( i*(n-1) > space )break;
+            exGap = space - i*(n-1);
+            gap += ' ';
+        }
+        string ans = A[idx[0]];
+        if( i == A.size() ){
+            for( int j = 1; j < n; j++ ){
+                ans += ' ';
+                ans += A[idx[j]];
+                space--;
+            }
+            for( int i = 0; i < space; i++ ){
+                ans += ' ';
+            }
+            ar.push_back(ans);
+            break;
+        }
+        for( int j = 1; j < n; j++ ){
+            ans += gap;
+            if( exGap > 0 ){
+                ans += ' ';
+                exGap--;
+                space--;
+            }
+            ans += A[idx[j]];
+            space -= (int)gap.size();
+        }
+        for( int j = 0; j < space; j++ )ans += ' ';
+        ar.push_back(ans);
+    }
+    return ar;
+}

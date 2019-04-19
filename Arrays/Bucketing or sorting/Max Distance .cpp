@@ -1,21 +1,24 @@
+bool cmp( pair<int,int> x, pair<int,int> y ){
+    if( x.first == y.first )return x.second < y.second;
+    return x.first < y.first;
+}
+
 int Solution::maximumGap(const vector<int> &A) {
-    vector<pair<int,int> > v;
-    for( int i = 0; i < A.size(); i++ ){
-        v.push_back(make_pair(A[i], i));
+    priority_queue<int> idx;
+    int n = A.size();
+    vector<pair<int, int> > v(n);
+    for( int i = 0; i < n; i++ ){
+        v[i] = make_pair(A[i], i);
     }
-    sort( v.begin(),v.end() );
-    priority_queue<pair<int,int> > pq;
-    for( int i = 0; i < v.size(); i++ ){
-        pq.push(make_pair(v[i].second, v[i].first));
-    }
+    sort(v.begin(), v.end(), cmp );
     int ans = -1;
-    for( int i = 0; i < v.size(); i++ ){
-        while( !pq.empty() && ( pq.top().first < v[i].second || pq.top().second < v[i].first)  ){
-            pq.pop();
+    for( int i = n-1; i >= 0; i-- ){
+        int cur = v[i].second;
+        idx.push(v[i].second);
+        while( idx.top() < cur ){
+            idx.pop();
         }
-        if( !pq.empty() ){
-            ans = max( ans , pq.top().first - v[i].second );
-        }
+        ans = max( ans, idx.top()-cur);
     }
     return ans;
 }

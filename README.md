@@ -1,5 +1,5 @@
 # [Interviewbit](https://www.interviewbit.com) solutions
-* [My interviewbit profile](https://www.interviewbit.com/profile/last_death)
+* [My interviewbit profile](https://www.interviewbit.com/profile/cenation)
 
 ## General Information
 The repository contains solutions to various [problems](https://www.interviewbit.com/dashboard/) on interviewbit. 

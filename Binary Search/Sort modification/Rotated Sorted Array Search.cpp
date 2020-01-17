@@ -1,20 +1,21 @@
 int Solution::search(const vector<int> &A, int num) {
-    int l = 0, r = A.size()-1;
-    while( l <= r ){
-        int mid = (l+r)/2;
-        if( num == A[mid] )return mid;
-        if( num > A[mid] && num <= A[r] ){
-            l = mid+1;
-        }
-        else if( num < A[mid] && num >= A[r] ){
-            r = mid-1;
+    int n = A.size();
+    int l = 0, r = n-1;
+    while(l <= r){
+        int mid = (l + r)/ 2;
+        if(A[mid] == num) return mid;
+        if( A[l] < A[r] ){
+            if( num < A[mid] )r = mid-1;
+            else l = mid+1;
         }
         else{
-            if( A[mid] <= A[r] ){
-                r = mid-1;
+            if( A[l] < A[mid] ){
+                if( num >= A[l] && num < A[mid] )r = mid-1;
+                else l = mid+1;
             }
             else{
-                l = mid+1;
+                if( A[mid] < num && num <= A[r] )l = mid+1;
+                else r = mid-1;
             }
         }
     }

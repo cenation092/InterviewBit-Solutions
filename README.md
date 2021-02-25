@@ -21,4 +21,4 @@ The solutions for the following types of questions are available :-
 
 1. If there is no solution to a problem in the main branch.
 2. If your solution is asymptotically faster than the one in the main branch.
-3. If solutions in main branch has something extra without which the algorithm also run perfectly. In this case, comment out the extra things & make a pull request with your solution.
+3. If solutions in main branch has something extra without which the algorithm also run perfectly. In this case, comment out the extra things & make a pull request with your solution .
